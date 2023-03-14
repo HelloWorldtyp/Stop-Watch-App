@@ -76,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     handler.removeCallbacks(event2);
                     handler.removeCallbacks(event3);
                     button.setText("Start");
+                    Toast t;
+                    if (time == time2 && time == time3 && button.getText().equals("Stop")) {
+                        t = Toast.makeText(getApplicationContext(), "JACKPOT!!!", Toast.LENGTH_SHORT);
+                    } else {
+                        t = Toast.makeText(getApplicationContext(), "No Jackpot YOU LOSE!!!!", Toast.LENGTH_SHORT);
+                    }
+                    t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    t.show();
                 }
             }
         });
@@ -91,16 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 if(time >= 4){
                     time = 0;
                     time++;
-                }
-                if(button.getText().equals("Stop")) {
-                    Toast t;
-                    if (time == time2 && time == time3 && button.getText().equals("Stop")) {
-                        t = Toast.makeText(getApplicationContext(), "JACKPOT!!!", Toast.LENGTH_SHORT);
-                    } else {
-                        t = Toast.makeText(getApplicationContext(), "No Jackpot YOU LOSE!!!!", Toast.LENGTH_SHORT);
-                    }
-                    t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    t.show();
                 }
             }else{
                 time--;
