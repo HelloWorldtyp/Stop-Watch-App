@@ -1,23 +1,25 @@
 package com.example.stopwatch;
 
-import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView timeView;
-    TextView timeView2;
-    TextView timeView3;
+    ImageView timeView;
+    ImageView timeView2;
+    ImageView timeView3;
+    Drawable cherry;
+    Drawable graphs;
+    Drawable strawberry;
+    Drawable pear;
     Button button;
 
 
@@ -39,9 +41,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timeView = findViewById(R.id.timeView);
-        timeView2 = findViewById(R.id.timeView2);
-        timeView3 = findViewById(R.id.timeView3);
+        timeView = findViewById(R.id.imageView);
+        timeView2 = findViewById(R.id.imageView2);
+        timeView3 = findViewById(R.id.imageView3);
+        cherry = getDrawable(R.drawable.cherry);
+        graphs = getDrawable(R.drawable.grape);
+        strawberry = getDrawable(R.drawable.strawberry);
+        pear = getDrawable(R.drawable.pear);
+
         button = findViewById(R.id.button);
 
         time = 0;
@@ -59,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState != null){
             time = savedInstanceState.getInt("time");
-            timeView.setText(time+"");
+            timeView.setImageDrawable(cherry);
         }
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -96,14 +103,21 @@ public class MainActivity extends AppCompatActivity {
         public void run(){
             if(up){
                 time++;
-                if(time >= 4){
+                if(time >= 4)
                     time = 0;
-                    time++;
-                }
-            }else{
+                    if(time == 0){
+                        timeView.setImageDrawable(cherry);
+
+                }else if(time == 1){
+                    timeView.setImageDrawable(graphs);
+                }else if(time == 2){
+                    timeView.setImageDrawable(strawberry);
+                }else {
+                        timeView.setImageDrawable(pear);
+                    }
+            }else {
                 time--;
             }
-            timeView.setText(time+"");
             handler.postDelayed(event, one_speed);
         }
     }
@@ -114,14 +128,21 @@ public class MainActivity extends AppCompatActivity {
         public void run(){
             if(up){
                 time2++;
-                if(time2 >= 4){
+                if(time2 >= 4)
                     time2 = 0;
-                    time2++;
+                if(time2 == 0){
+                    timeView2.setImageDrawable(cherry);
+
+                }else if(time2 == 1){
+                    timeView2.setImageDrawable(graphs);
+                }else if(time2 == 2){
+                    timeView2.setImageDrawable(strawberry);
+                }else {
+                    timeView2.setImageDrawable(pear);
                 }
             }else{
                 time2--;
             }
-            timeView2.setText(time2+"");
             handler.postDelayed(event2, second_speed);
         }
     }
@@ -132,14 +153,21 @@ public class MainActivity extends AppCompatActivity {
         public void run(){
             if(up){
                 time3++;
-                if(time3 >= 4){
+                if(time3 >= 4)
                     time3 = 0;
-                    time3++;
+                if(time3 == 0){
+                    timeView3.setImageDrawable(cherry);
+
+                }else if(time3 == 1){
+                    timeView3.setImageDrawable(graphs);
+                }else if(time3 == 2){
+                    timeView3.setImageDrawable(strawberry);
+                }else {
+                    timeView3.setImageDrawable(pear);
                 }
             }else{
                 time3--;
             }
-            timeView3.setText(time3+"");
             handler.postDelayed(event3, third_speed);
         }
     }
