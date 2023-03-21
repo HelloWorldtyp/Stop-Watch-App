@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 time++;
                 if(time >= 4)
                     time = 0;
-                    if(time == 0){
+                    if(time == 0) {
                         timeView.setImageDrawable(cherry);
 
                 }else if(time == 1){
